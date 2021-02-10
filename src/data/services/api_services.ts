@@ -1,12 +1,14 @@
+import { Todo } from "../../interfaces/todo";
+
 const url = 'http://localhost:3002/api/react-flux/';
 
 export const ApiServices = {
-    get(endpoint) {
+    get(endpoint: string) {
         return fetch(`${url}${endpoint}`).then(response => response.json()).catch(error => {
             console.error(error);
         });
     },
-    post(endpoint, data) {
+    post(endpoint: string, data: Todo) {
         return fetch(`${url}${endpoint}`, {
             method: 'POST',
             body: JSON.stringify(data)
@@ -14,7 +16,7 @@ export const ApiServices = {
             console.error(error);
         });
     },
-    put(endpoint, data) {
+    put(endpoint: string, data: Todo) {
         return fetch(`${url}${endpoint}?id=${data.id}`, {
             method: 'PUT',
             body: JSON.stringify(data)
@@ -22,7 +24,7 @@ export const ApiServices = {
             console.error(error);
         });
     },
-    delete(endpoint, id) {
+    delete(endpoint: string, id: number) {
         return fetch(`${url}${endpoint}?id=${id}`, {
             method: 'DELETE'
         }).then(response => response.json()).catch(error => {
